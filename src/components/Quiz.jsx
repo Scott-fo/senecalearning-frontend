@@ -6,7 +6,16 @@ import Answers from './Answers';
 const Quiz = () => {
   const [correct, setCorrect] = useState(false);
   const [selectedList, setSelectedList] = useState({});
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const correctList = Questions[0].correctAnswers;
+
+  useEffect(() => {
+    setShuffledAnswers(shuffle(Questions[0].answers))
+  }, [Questions[0].answers]);
+
+  useEffect(() => {
+    checkCorrectness();
+  }, [selectedList, correctList, correct]);
 
   const handleClick = (e) => {
     const name = e.currentTarget.name;
@@ -14,47 +23,47 @@ const Quiz = () => {
     setSelectedList({...selectedList, [name] : target });
   }
 
-  const updateColours = () => {
-    if (correct) {
-      document.documentElement.style.setProperty("--background-gradient", "linear-gradient(180deg, #76E0C2 0%, #59CADA 100%)");
-      document.documentElement.style.setProperty("--answer-background", "#A5E7E2");
-      document.documentElement.style.setProperty("--answer-border", "#A5E7E2");
-      document.documentElement.style.setProperty("--answer-text", "#4CAD94");
-    } else {
-      document.documentElement.style.setProperty("--background-gradient", "linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%)");
-      document.documentElement.style.setProperty("--answer-background", "#F9D29F");
-      document.documentElement.style.setProperty("--answer-border", "#F9D29F");
-      document.documentElement.style.setProperty("--answer-text", "#9F938B");
+  const updateColours = (gradient, answerBackground, answerText) => {
+    document.documentElement.style.setProperty("--background-gradient", gradient);
+    document.documentElement.style.setProperty("--answer-background", answerBackground);
+    document.documentElement.style.setProperty("--answer-text", answerText);
+  }
+
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
     }
-  };
+    return array;
+  }
 
-  const answerComponent = Questions[0].answers.map((answer, key) => {
-    return (
-      <Answers 
-        key={key}
-        id={key}
-        {...answer}
-        correct={correct}
-        handleClick={(e) => handleClick(e)}
-      />
-    )
-  });
-
-  useEffect(() => {
-    if (JSON.stringify(correctList) === JSON.stringify(Object.values(selectedList))) {
+  const checkCorrectness = () => {
+    if (JSON.stringify(correctList.sort()) === JSON.stringify(Object.values(selectedList).sort())) {
       setCorrect(true);
-      updateColours(correct);
+      updateColours("linear-gradient(180deg, #76E0C2 0%, #59CADA 100%)", "#A5E7E2", "#4CAD94");
     } else if ((correctList.filter(item => Object.values(selectedList).includes(item))).length >= 2) {
         setCorrect(false);
-        document.documentElement.style.setProperty("--background-gradient", "linear-gradient(180deg, #F1B496 0%, #EA806A 100%)");
-        document.documentElement.style.setProperty("--answer-background", "#F2CBBD");
-        document.documentElement.style.setProperty("--answer-border", "#F2CBBD");
-        document.documentElement.style.setProperty("--answer-text", "#E47958");
+        updateColours("linear-gradient(180deg, #F1B496 0%, #EA806A 100%)", "#F2CBBD", "#E47958");
     } else {
         setCorrect(false);
-        updateColours(correct);
+        updateColours("linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%)", "#F9D29F", "#9F938B");
     }
-  }, [selectedList, correctList, correct])
+  }
+
+  const answerComponent = shuffledAnswers.map((answer, key) => {
+    return (
+      <Answers 
+      key={key}
+      id={key}
+      answer={answer}
+      correct={correct}
+      handleClick={(e) => handleClick(e)}
+      shuffle={(array) => shuffle(array)}
+      />
+      )
+    });
 
   return (
     <div className='quiz-wrapper'>

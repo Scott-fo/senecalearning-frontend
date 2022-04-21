@@ -1,6 +1,5 @@
 :root {
   --background-gradient: linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%);
-  --answer-border: #F9D29F;
   --answer-background: #F9D29F;
   --answer-text: #9F938B;
 }
@@ -19,6 +18,8 @@
   display: flex;
   flex-direction: column;
   width: 70%;
+  max-width: 900px;
+  max-height: 80px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -34,7 +35,7 @@
 .answers {
   display: flex;
   justify-content: space-between;
-  border: 2px solid var(--answer-border);
+  border: 2px solid var(--answer-background);
   border-radius: 100px;
   margin: 12px 0;
 }
