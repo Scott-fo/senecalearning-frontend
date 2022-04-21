@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Quiz from './components/Quiz';
+import "./styles/App.css";
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Quiz />
+    </div>
   )
 }
 

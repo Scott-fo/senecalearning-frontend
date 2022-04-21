@@ -1,0 +1,12 @@
+[
+  {
+    "question" : "An animal cell contains:",
+    "correctAnswers" : ["Ribosomes", "Cytoplasm", "Partially Permeable Membrane", "Mitochondria"],
+    "answers" : [
+      ["Ribosomes", "Cell Wall"],
+      ["Cytoplasm", "Chloroplast"],
+      ["Partially Permeable Membrane", "Impermeable Membrane"],
+      ["Mitochondria", "Cellulose"]
+    ]
+  }
+]
