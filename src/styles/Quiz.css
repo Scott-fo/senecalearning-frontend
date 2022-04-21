@@ -1,5 +1,13 @@
+:root {
+  --background-gradient: linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%);
+  --answer-border: #F9D29F;
+  --answer-background: #F9D29F;
+  --answer-text: #9F938B;
+}
+
 .quiz-wrapper {
-  background: linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%);
+  /* background: linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%); */
+  background: var(--background-gradient);
   width: 100vw;
   height: 100vh;
   font-family: 'Mulish', sans-serif;
@@ -26,7 +34,7 @@
 .answers {
   display: flex;
   justify-content: space-between;
-  border: 2px solid #F9D29F;
+  border: 2px solid var(--answer-border);
   border-radius: 100px;
   margin: 12px 0;
 }
@@ -59,6 +67,6 @@
 }
 
 .answer-input:checked + label{
-  background-color: #F9D29F;
-  color: #9F938B;
+  background-color: var(--answer-background);
+  color: var(--answer-text);
 }
