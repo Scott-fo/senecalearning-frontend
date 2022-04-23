@@ -4,14 +4,11 @@
   border: 2px solid var(--answer-background);
   border-radius: 39px;
   margin: 12px 0;
-  /* flex-wrap: wrap; */
 }
 
 .answer-section {
   display: flex;
   justify-content: center;
-  /* width: 50%; */
-  /* min-width: 144px; */
   border-radius: 100px;
 }
 
@@ -23,9 +20,7 @@
   display: flex;
   justify-content: center;
   width: 30%;
-  /* min-width: 144px; */
   border-radius: 100px;
-  /* border-bottom: 50px; */
   overflow-wrap: break-word;
 }
 
@@ -39,9 +34,6 @@
   padding: 21px;
   width: 100%;
   text-align: center;
-  /* border-radius: 100px; */
-  /* border-bottom-right-radius: 36px;
-  border-bottom-left-radius: 36px; */
   cursor: pointer;
 }
 
