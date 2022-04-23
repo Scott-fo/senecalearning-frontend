@@ -21,17 +21,15 @@ const Answers = ({ shuffle, answer, id, handleClick, correct, selectedList }: Pr
     setShuffledArray(shuffle(answer));
     // eslint-disable-next-line
   }, [answer]);
-  
-  const answerList = shuffledArray.map(item => {
+
+  const answerList = shuffledArray.map((item: string, key: number) => {
     return (
-      <section className="answer-section">
+      <section className="answer-section" key={key}>
           <input className="answer-input" type="radio" value={item} id={item} name={String(id)} onClick={handleClick} disabled={correct ? true : false} onChange={()=>{}} checked={selectedList[id] === item}/>
           <label className='answer' htmlFor={item}>{item}</label>
       </section>
     )
   })
-
-  console.log(answerList)
 
   return (
     <div className='answers'>
