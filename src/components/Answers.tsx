@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 interface Props {
   shuffle: (array: any[]) => any[];
-  handleClick: React.MouseEventHandler<HTMLInputElement>;
+  handleClick: (e: any) => void;
   answer: string[];
   id: number;
   correct: boolean;
@@ -26,6 +26,13 @@ const Answers = ({ shuffle, answer, id, handleClick, correct }: Props) => {
         <input className="answer-input" type="radio" value={shuffledArray[1]} id={shuffledArray[1]} name={String(id)} onClick={handleClick} disabled={correct ? true : false}/>
         <label className='answer' htmlFor={shuffledArray[1]}>{shuffledArray[1]}</label>
       </section>
+      
+      {shuffledArray.length > 2 && 
+        <section className="answer-section">
+          <input className="answer-input" type="radio" value={shuffledArray[2]} id={shuffledArray[2]} name={String(id)} onClick={handleClick} disabled={correct ? true : false}/>
+          <label className='answer' htmlFor={shuffledArray[2]}>{shuffledArray[2]}</label>
+        </section>
+      }
     </div>
   )
 }
