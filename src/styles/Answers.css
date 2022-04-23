@@ -1,0 +1,32 @@
+.answers {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid var(--answer-background);
+  border-radius: 100px;
+  margin: 12px 0;
+}
+
+.answer-section {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  border-radius: 100px;
+}
+
+.answer-input {
+  display: none;
+}
+
+.answer-input:checked + label{
+  background-color: var(--answer-background);
+  color: var(--answer-text);
+}
+
+.answer {
+  font-size: 24px;
+  padding: 21px;
+  width: 100%;
+  text-align: center;
+  border-radius: 100px;
+  cursor: pointer;
+}

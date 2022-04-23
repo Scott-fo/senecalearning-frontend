@@ -4,22 +4,39 @@ import Questions from "../questions.json";
 import { Answers } from './Answers';
 
 const Quiz = () => {
+
+  type selected = {
+    [key: number] : string;
+  };
+
   const [correct, setCorrect] = useState(false);
-  const [selectedList, setSelectedList] = useState({});
+  const [selectedList, setSelectedList] = useState<selected>({});
   const [shuffledAnswers, setShuffledAnswers] = useState<any[]>([]);
-  const activeQuestion = Questions[1];
+  const [questionNumber, setQuestionNumber] = useState<number>(0);
+
+  const activeQuestion = Questions[questionNumber];
   const correctList = activeQuestion.correctAnswers;
   const answerList = activeQuestion.answers;
 
-  
-  
   const handleClick = (e: any): void => {
     const name = e.currentTarget.name;
     const target = e.currentTarget.id;
     setSelectedList({...selectedList, [name] : target });
   }
+
+  const incrementQuestion = (): void => {
+    if (questionNumber === Questions.length - 1) {
+      setQuestionNumber(questionNumber - 1);
+      setCorrect(false);
+      setSelectedList({});
+    } else {
+      setQuestionNumber(questionNumber + 1);
+      setCorrect(false);
+      setSelectedList({});
+    }
+  }
   
-  const updateColours = (gradient: string, answerBackground: string, answerText: string) => {
+  const updateColours = (gradient: string, answerBackground: string, answerText: string): void => {
     document.documentElement.style.setProperty("--background-gradient", gradient);
     document.documentElement.style.setProperty("--answer-background", answerBackground);
     document.documentElement.style.setProperty("--answer-text", answerText);
@@ -55,7 +72,7 @@ const Quiz = () => {
 
   useEffect(() => {
     checkCorrectness();
-  }, [selectedList, correctList, correct, checkCorrectness]);
+  }, [selectedList, correctList, correct, checkCorrectness, activeQuestion]);
   
   const answerComponent = shuffledAnswers.map((answer: string[], key: number) => {
       return (
@@ -66,16 +83,18 @@ const Quiz = () => {
         correct={correct}
         handleClick={(e: any) => handleClick(e)}
         shuffle={(array) => shuffle(array)}
+        selectedList={selectedList}
         />
         )
     });
-
+  
   return (
     <div className='quiz-wrapper'>
       <div className="quiz-container">
         <h1 className='question'>{activeQuestion.question}</h1>
         {answerComponent}
         <h2 className='result'>The answer is {correct ? "correct!" : "incorrect"}</h2>
+        {correct && <button className='question-toggle' onClick={incrementQuestion}>{questionNumber === Questions.length - 1 ? "Previous" : "Next"} Question</button>}
       </div>
     </div>
   )
