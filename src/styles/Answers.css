@@ -2,19 +2,31 @@
   display: flex;
   justify-content: space-between;
   border: 2px solid var(--answer-background);
-  border-radius: 100px;
+  border-radius: 39px;
   margin: 12px 0;
+  /* flex-wrap: wrap; */
 }
 
 .answer-section {
   display: flex;
   justify-content: center;
-  width: 50%;
+  /* width: 50%; */
+  /* min-width: 144px; */
   border-radius: 100px;
 }
 
 .answer-input {
   display: none;
+}
+
+.answer-section-3input {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  /* min-width: 144px; */
+  border-radius: 100px;
+  /* border-bottom: 50px; */
+  overflow-wrap: break-word;
 }
 
 .answer-input:checked + label{
@@ -23,10 +35,18 @@
 }
 
 .answer {
-  font-size: 24px;
+  font-size: 18px;
   padding: 21px;
   width: 100%;
   text-align: center;
-  border-radius: 100px;
+  /* border-radius: 100px; */
+  /* border-bottom-right-radius: 36px;
+  border-bottom-left-radius: 36px; */
   cursor: pointer;
+}
+
+@media (min-width: 650px) {
+  .answer {
+    font-size: 24px;
+  }
 }
