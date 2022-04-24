@@ -35,6 +35,7 @@
   width: 100%;
   text-align: center;
   cursor: pointer;
+  transition-duration: 400ms;
 }
 
 @media (min-width: 650px) {
