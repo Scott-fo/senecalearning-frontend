@@ -20,10 +20,30 @@ const Quiz = () => {
   const [shuffledAnswers, setShuffledAnswers] = useState<any[]>([]);
   const [questionNumber, setQuestionNumber] = useState<number>(0);
   const [viewQuestions, setViewQuestions] = useState<boolean>(false);
+  
+  const shuffle = useCallback((array: any[]): any[] => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    };
+    
+    return array;
+  }, []);
+  
+  useEffect(() => {
+    shuffle(Questions);
+  }, [shuffle]);
 
   const activeQuestion: QuestionObj = Questions[questionNumber];
   const correctList = activeQuestion.correctAnswers;
   const answerList = activeQuestion.answers;
+  
+  useEffect(() => {
+    const shuffledAnswers = shuffle(answerList);
+    setShuffledAnswers(shuffledAnswers);
+  }, [shuffle, answerList]);
 
   const updateColours = (gradient: string, answerBackground: string, answerText: string): void => {
     document.documentElement.style.setProperty("--background-gradient", gradient);
@@ -61,21 +81,6 @@ const Quiz = () => {
     clearSelection();
   };
   
-  const shuffle = useCallback((array: any[]): any[] => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    };
-
-    return array;
-  }, []);
-  
-  useEffect(() => {
-    const shuffledAnswers = shuffle(answerList);
-    setShuffledAnswers(shuffledAnswers);
-  }, [shuffle, answerList]);
 
   const checkCorrectness = useCallback(() => {
     if (JSON.stringify(correctList.sort()) === JSON.stringify(Object.values(selectedList).sort())) {
@@ -96,7 +101,7 @@ const Quiz = () => {
   
   const questionList = Questions.map((question: QuestionObj, key: number) => {
     return (
-        <h2 id={String(key)} className="question-item" onClick={() => handleQuestionSelect(key)}>{question.question}</h2>
+        <h2 key={key} id={String(key)} className="question-item" onClick={() => handleQuestionSelect(key)}>{question.question}</h2>
     );
   });
 
