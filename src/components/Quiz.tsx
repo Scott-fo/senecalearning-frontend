@@ -21,7 +21,7 @@ const Quiz = () => {
   const [questionNumber, setQuestionNumber] = useState<number>(0);
   const [viewQuestions, setViewQuestions] = useState<boolean>(false);
 
-  const activeQuestion = Questions[questionNumber];
+  const activeQuestion: QuestionObj = Questions[questionNumber];
   const correctList = activeQuestion.correctAnswers;
   const answerList = activeQuestion.answers;
 
@@ -52,7 +52,7 @@ const Quiz = () => {
     setSelectedList({});
   };
 
-  const toggleQuestionSidebar = () => {
+  const toggleQuestionSidebar = (): void => {
     setViewQuestions(!viewQuestions);
   };
 
