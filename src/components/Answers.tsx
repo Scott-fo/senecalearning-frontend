@@ -45,7 +45,7 @@ const Answers = ({ shuffle, answer, id, handleClick, correct, selectedList }: Pr
     const fullRad = { borderRadius: "100px" };
 
     if (shuffledArray.length === 2) {
-      if (maxLength > 14 && width < 1150)
+      if ((maxLength >= 14 && width < 1150) || (maxLength >= 12 && width < 450))
         if (key === 0) 
           return upperRad;
         else 
@@ -72,7 +72,7 @@ const Answers = ({ shuffle, answer, id, handleClick, correct, selectedList }: Pr
     return (
       <section 
         className={shuffledArray.length === 3 ? "answer-section-3input" : "answer-section"}
-        style={(maxLength > 14 && width < 1150) || (key === 2 && width < 755) ? {width: "100%"} : {width: "50%"}} 
+        style={(maxLength >= 14 && width < 1150) || (maxLength >= 12 && width < 450) || (key === 2 && width < 755) ? {width: "100%"} : {width: "50%"}} 
         key={key}>
           <input 
             className="answer-input"

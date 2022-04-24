@@ -11,7 +11,7 @@
   },
   {
     "question" : "What are the ideal conditions inside an office?",
-    "correctAnswers" : ["good pay", "lot of meetings", "free coffee", "bear in office", "dog in office"],
+    "correctAnswers" : ["good pay", "less meetings", "free coffee", "dog in office"],
     "answers" : [
       ["good pay", "bad pay"],
       ["lot of meetings", "less meetings"],
