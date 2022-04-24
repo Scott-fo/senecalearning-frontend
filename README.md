@@ -13,13 +13,13 @@ To run the project:
 
 ## Description of Functionality
 
-### How to use
+### How to use:
 
 * Select the correct answer on each row.
 * Once the question is answered correctly, if available, a "Next Question" prompt will be shown, otherwise a "Previous Question" prompt will be shown.
 * Questions can also be selected by clicking the current active question at the top of the page to open the sidebar.
 
-### Additional Comments
+### Additional Comments:
 
 * The questions and the position of the answers are randomised.
 * Background colour changes when 50% of the answers are correct.
