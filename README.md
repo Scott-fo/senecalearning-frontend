@@ -29,5 +29,8 @@ To run the project:
 
 ## Assumptions & Limitations
 
-* Did not implement the sliding toggle that was defined in the specification.
-* The code expects the data to be provided in the format provided in the questions.json.
+* The animation between toggle states defined in the specification was not implemented. 
+  * Creating animations in CSS is a weak point in my current skillset. I have found a way to create the desired effect, but that solution would not have been     as responsive or clean as the result that I have produced.
+  * Inspired by this project, I plan to expand my transitions and animations knowledge. 
+  * This will come after my next topic of focus which is test driven development.
+* It is required that the data is provided in the format provided in the questions.json.
